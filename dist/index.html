@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>楼栋入口 2D 游戏风合并图</title>
+<style>
+  :root { color-scheme: light; }
+  body { margin: 0; font-family: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f2f0ec; color: #222; }
+  header { background: #2f3540; color: #ffd98c; padding: 16px 20px; }
+  header h1 { margin: 0; font-size: 20px; }
+  header p { margin: 6px 0 0; font-size: 13px; color: #e8e2d4; }
+  main { max-width: 960px; margin: 0 auto; padding: 20px 16px 48px; }
+  .card { background: #fff; border: 1px solid #ddd; border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  .card h2 { margin: 0 0 8px; font-size: 16px; }
+  .card p, .card li { font-size: 14px; line-height: 1.7; }
+  .shot { display: block; width: 100%; max-width: 480px; margin: 12px auto; border: 3px solid #2b2b2b; border-radius: 8px; background: #e4e4e2; }
+  .grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 720px) { .grid { grid-template-columns: 1fr 1fr; } }
+  footer { text-align: center; color: #888; font-size: 12px; padding: 20px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>1栋入口 · 2D 游戏风合并方案</h1>
+  <p>图一仅保留地台 / 台阶 / 斜坡 / 柱子顶结构造型，其余跟图二 · Phone / Tablet 竖版</p>
+</header>
+<main>
+  <div class="card">
+    <h2>合并结果</h2>
+    <p>结构来自图一（双柱 + 架空顶 + 双层地台 + 右侧斜坡 + 独立柱础），材质与内容跟图二（浅色马赛克立面、蓝色饰线、空调机位、蓝牌、暖光玻璃雨棚边灯、1栋门头、黄色禁停网格铺装）。已去掉偶发车辆与树木遮挡，保留干净的游戏背景可读性。</p>
+    <img class="shot" src="./merged_2dgame_phone.png" alt="merged 2D game entrance">
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h2>来自图一</h2>
+      <ul>
+        <li>双层地台 + 正面两级台阶</li>
+        <li>右侧无障碍斜坡向前延伸</li>
+        <li>两根方形立柱 + 独立柱础</li>
+        <li>平板顶 + 底部三道横梁透视</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>跟图二</h2>
+      <ul>
+        <li>立面 tile / 窗位 / 空调 / 管道</li>
+        <li>深灰门套 + 暖色侧灯带 + 玻璃门</li>
+        <li>玻璃质感顶 + LED 灯带 + 筒灯</li>
+        <li>地面铺装 + 黄色网格线</li>
+      </ul>
+    </div>
+  </div>
+</main>
+<footer>PlayGround static preview · renders without build</footer>
+</body>
+</html>
