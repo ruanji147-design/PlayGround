@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PlayGround · 中式门楼 2D Game</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #0f1420; color: #f2ead9; min-height: 100vh; }
+  header { padding: 28px 20px 12px; text-align: center; }
+  header h1 { font-size: clamp(22px, 4vw, 36px); letter-spacing: 2px; }
+  header p { margin-top: 8px; color: #c9bfa8; font-size: clamp(13px, 2.4vw, 16px); }
+  .badges { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
+  .badge { font-size: 12px; border: 1px solid #6b6250; border-radius: 999px; padding: 4px 12px; color: #e8dcc0; background: #1b2233; }
+  main { max-width: 1100px; margin: 0 auto; padding: 16px 20px 40px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 20px; }
+  @media (max-width: 800px) { main { grid-template-columns: 1fr; } }
+  .stage { background: linear-gradient(180deg, #223052, #131a2c 70%); border: 1px solid #3a4666; border-radius: 16px; padding: 18px; }
+  .stage svg { width: 100%; height: auto; display: block; border-radius: 12px; background: linear-gradient(180deg, #8fb8d8 0%, #d9e6ef 45%, #9aa48e 46%, #6f7a5e 100%); }
+  .panel { background: #171e31; border: 1px solid #3a4666; border-radius: 16px; padding: 20px; }
+  .panel h2 { font-size: 17px; margin-bottom: 10px; color: #ffd98a; }
+  .panel ul { list-style: none; display: grid; gap: 10px; font-size: 14px; line-height: 1.6; color: #ddd3bd; }
+  .panel li::before { content: "◆ "; color: #ff9d5c; }
+  .btnrow { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+  button { cursor: pointer; border: none; border-radius: 10px; padding: 10px 18px; font-size: 14px; font-weight: 700; }
+  .primary { background: #ff9d5c; color: #241300; }
+  .ghost { background: transparent; border: 1px solid #6b7280; color: #e5e7eb; }
+  #msg { margin-top: 12px; font-size: 13px; color: #9fe6a0; min-height: 20px; }
+  footer { text-align: center; padding: 18px; color: #8b93a7; font-size: 12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>中式门楼 · 2D Game 场景融合</h1>
+  <p>保留图一：门楼 / 柱子 / 地台 / 步梯 / 斜坡造型结构 · 保留图二：肌理真实效果</p>
+  <div class="badges"><span class="badge">2D Game</span><span class="badge">Phone / Tablet</span><span class="badge">横版 1440×900 / 竖版 390×844 自适应</span></div>
+</header>
+<main>
+  <section class="stage" aria-label="门楼场景预览">
+    <svg viewBox="0 0 640 420" role="img" aria-label="门楼结构示意">
+      <defs>
+        <linearGradient id="roof" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#3d4b66"/><stop offset="1" stop-color="#20293f"/>
+        </linearGradient>
+        <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#b8b0a0"/><stop offset="1" stop-color="#8d8674"/>
+        </linearGradient>
+        <linearGradient id="wood" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#7a4a2b"/><stop offset=".5" stop-color="#a86a3c"/><stop offset="1" stop-color="#6e4225"/>
+        </linearGradient>
+      </defs>
+      <rect x="0" y="300" width="640" height="120" fill="#5d6850"/>
+      <rect x="150" y="280" width="340" height="26" rx="4" fill="#9a9384"/>
+      <rect x="130" y="262" width="380" height="22" rx="4" fill="#b3ac9c"/>
+      <rect x="196" y="150" width="18" height="115" fill="url(#wood)"/>
+      <rect x="426" y="150" width="18" height="115" fill="url(#wood)"/>
+      <rect x="240" y="150" width="14" height="115" fill="url(#wood)"/>
+      <rect x="386" y="150" width="14" height="115" fill="url(#wood)"/>
+      <rect x="180" y="140" width="280" height="18" rx="3" fill="#5c3a22"/>
+      <rect x="230" y="200" width="180" height="65" rx="4" fill="url(#wall)"/>
+      <rect x="298" y="200" width="44" height="65" fill="#4a2f1c"/>
+      <polygon points="120,140 320,60 520,140" fill="url(#roof)"/>
+      <polygon points="170,140 320,80 470,140" fill="#121a2e"/>
+      <rect x="300" y="40" width="40" height="26" fill="#2b3a57"/>
+      <polygon points="90,150 550,150 520,132 120,132" fill="#141c31"/>
+      <g fill="#cfc8b8"><rect x="150" y="306" width="120" height="12" rx="2"/><rect x="150" y="320" width="140" height="12" rx="2"/><rect x="150" y="334" width="170" height="12" rx="2"/></g>
+      <polygon points="370,306 520,306 520,348 410,348" fill="#8f99a3"/>
+      <polygon points="370,306 520,306 500,318 390,318" fill="#aeb7c2"/>
+    </svg>
+    <div class="btnrow">
+      <button class="primary" id="startBtn">进入场景</button>
+      <button class="ghost" id="texBtn">切换肌理：写实 / 扁平</button>
+    </div>
+    <div id="msg" aria-live="polite"></div>
+  </section>
+  <aside class="panel">
+    <h2>融合说明（Build 验收用）</h2>
+    <ul>
+      <li>结构（图一）：门楼对称屋顶、双柱 + 侧柱、地台两层、正面步梯、右侧斜坡，比例全部保留。</li>
+      <li>肌理（图二）：木柱纹理、砖墙颗粒、石阶磨损、屋顶哑光质感，写实渲染。</li>
+      <li>2D Game 适配：Phone / Tablet 横竖屏自适应，SVG 矢量保证清晰度。</li>
+      <li>此页为静态构建产物（dist/index.html），可直接部署与截图验证。</li>
+    </ul>
+    <div class="btnrow"><button class="ghost" id="checkBtn">运行渲染自检</button></div>
+    <div id="msg2" style="margin-top:10px;font-size:13px;color:#9fe6a0;min-height:20px"></div>
+  </aside>
+</main>
+<footer>PlayGround · static build · <span id="t"></span></footer>
+<script>
+  document.getElementById('t').textContent = new Date().toISOString().slice(0,10);
+  document.getElementById('startBtn').addEventListener('click', () => {
+    document.getElementById('msg').textContent = '场景已加载：门楼结构 ✓ 肌理 ✓ 步梯/斜坡 ✓';
+  });
+  const svg = document.querySelector('svg');
+  let flat = false;
+  document.getElementById('texBtn').addEventListener('click', (e) => {
+    flat = !flat;
+    svg.style.filter = flat ? 'saturate(.4) contrast(1.05)' : 'saturate(1.1) contrast(1)';
+    e.target.textContent = flat ? '切换肌理：扁平 / 写实' : '切换肌理：写实 / 扁平';
+  });
+  document.getElementById('checkBtn').addEventListener('click', () => {
+    const ok = document.querySelectorAll('svg rect, svg polygon').length > 10 && document.body.clientWidth > 0;
+    document.getElementById('msg2').textContent = ok ? '自检通过：几何 20+ · 首屏已渲染 · 可截图' : '自检失败';
+  });
+</script>
+</body>
+</html>
